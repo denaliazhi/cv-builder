@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.css";
 
-function Section({ title, fields, handleChange }) {
+function Section({ title, data, handleChange }) {
   return (
     <fieldset key={title} className={title}>
       <legend>{title}</legend>
-      {Object.entries(fields).map(([field, details]) => {
+      {Object.entries(data).map(([field, details]) => {
         return (
           <>
             <label>{field}</label>
@@ -13,7 +13,7 @@ function Section({ title, fields, handleChange }) {
               type={details.type}
               id={field}
               name={field}
-              // onChange={(e, field) => handleChange(e, field)}
+              onChange={handleChange}
             />
           </>
         );
@@ -41,21 +41,23 @@ function App() {
       value: "",
     },
   });
-  console.log(generalData);
-  console.log(Object.entries(generalData).map(([field, details]) => field));
+
+  const handleChange = (e) => {
+    const field = e.target.id;
+    const input = e.target.value;
+    setGeneralData({
+      ...generalData,
+      [field]: { ...generalData[field], value: input },
+    });
+  };
 
   return (
     <>
       <h1>CV Builder</h1>
       <Section
         title="General"
-        fields={generalData}
-        // handleChange={(e, field) =>
-        //   setGeneralData({
-        //     ...generalData,
-        //     [field]: { ...generalData.field, value: e.target.value },
-        //   })
-        // }
+        data={generalData}
+        handleChange={handleChange}
       ></Section>
     </>
   );
