@@ -2,6 +2,11 @@ import { useState } from "react";
 import "./App.css";
 
 function Section({ title, data, handleChange }) {
+  const [editMode, setEditMode] = useState(false);
+  const handleClick = () => {
+    setEditMode(editMode ? false : true);
+  };
+
   return (
     <fieldset key={title} className={title}>
       <legend>{title}</legend>
@@ -9,16 +14,22 @@ function Section({ title, data, handleChange }) {
         return (
           <>
             <label>{field}</label>
-            <input
-              type={details.type}
-              id={field}
-              name={field}
-              onChange={handleChange}
-            />
+            {editMode ? (
+              <input
+                type={details.type}
+                placeholder={details.placeholder}
+                value={details.value}
+                id={field}
+                name={field}
+                onChange={handleChange}
+              />
+            ) : (
+              <p>{details.value}</p>
+            )}
           </>
         );
       })}
-      <button>Save</button>
+      <button onClick={handleClick}>{editMode ? "Save" : "Edit"}</button>
     </fieldset>
   );
 }
@@ -28,16 +39,19 @@ function App() {
     Name: {
       type: "text",
       required: true,
+      placeholder: "Ivan Tor",
       value: "",
     },
     Email: {
       type: "email",
       required: true,
+      placeholder: "ivantor@gmail.com",
       value: "",
     },
     Phone: {
       type: "tel",
       required: false,
+      placeholder: "135-792-4680",
       value: "",
     },
   });
@@ -59,6 +73,7 @@ function App() {
         data={generalData}
         handleChange={handleChange}
       ></Section>
+      <div>{JSON.stringify(generalData)}</div>
     </>
   );
 }
