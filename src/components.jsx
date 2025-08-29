@@ -39,3 +39,39 @@ export function Section({ title, data, handleChange }) {
     </form>
   );
 }
+
+export function Preview({ data: [general, education] }) {
+  const degreeStart = new Date(education.Start.value).toLocaleString(
+    "default",
+    {
+      month: "short",
+    }
+  );
+
+  return (
+    <div className="preview">
+      <div className="general">
+        <h2>{general.Name.value}</h2>
+        <p>{general.Email.value}</p>
+        <p>{general.Phone.value}</p>
+      </div>
+      <hr />
+      <div className="work"></div>
+      <hr />
+      <div className="education">
+        <h3>Education</h3>
+        <div>
+          <h4>{education.Degree.value}</h4>
+          <p>{education.School.value}</p>
+          <p>
+            {education.Start.value
+              ? `${degreeStart} - ${
+                  education.End.value ? education.End.value : "Present"
+                }`
+              : ""}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
