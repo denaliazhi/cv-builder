@@ -8,11 +8,11 @@ function Section({ title, data, handleChange }) {
   };
 
   return (
-    <fieldset key={title} className={title}>
-      <legend>{title}</legend>
+    <form key={title} id={title}>
+      <h2>{title}</h2>
       {Object.entries(data).map(([field, details]) => {
         return (
-          <>
+          <div>
             <label>{field}</label>
             {editMode ? (
               <input
@@ -21,16 +21,26 @@ function Section({ title, data, handleChange }) {
                 value={details.value}
                 id={field}
                 name={field}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const id = e.target.id;
+                  const input = e.target.value;
+                  handleChange({
+                    ...data,
+                    [id]: { ...data[id], value: input },
+                  });
+                }}
+                required={details.required}
               />
             ) : (
               <p>{details.value}</p>
             )}
-          </>
+          </div>
         );
       })}
-      <button onClick={handleClick}>{editMode ? "Save" : "Edit"}</button>
-    </fieldset>
+      <button type="button" form={title} onClick={handleClick}>
+        {editMode ? "Save" : "Edit"}
+      </button>
+    </form>
   );
 }
 
@@ -56,22 +66,13 @@ function App() {
     },
   });
 
-  const handleChange = (e) => {
-    const field = e.target.id;
-    const input = e.target.value;
-    setGeneralData({
-      ...generalData,
-      [field]: { ...generalData[field], value: input },
-    });
-  };
-
   return (
     <>
       <h1>CV Builder</h1>
       <Section
         title="General"
         data={generalData}
-        handleChange={handleChange}
+        handleChange={setGeneralData}
       ></Section>
       <div>{JSON.stringify(generalData)}</div>
     </>
