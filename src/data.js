@@ -33,15 +33,13 @@ export const formFields = {
       value: "",
     },
     Start: {
-      type: "text",
+      type: "date",
       required: false,
-      placeholder: "mm/dd/yyyy",
       value: "",
     },
     End: {
-      type: "text",
+      type: "date",
       required: false,
-      placeholder: "mm/dd/yyyy",
       value: "",
     },
   },
