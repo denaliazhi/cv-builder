@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { formFields } from "./data.js";
 
 function Section({ title, data, handleChange }) {
   const [editMode, setEditMode] = useState(false);
@@ -45,36 +46,22 @@ function Section({ title, data, handleChange }) {
 }
 
 function App() {
-  const [generalData, setGeneralData] = useState({
-    Name: {
-      type: "text",
-      required: true,
-      placeholder: "Ivan Tor",
-      value: "",
-    },
-    Email: {
-      type: "email",
-      required: true,
-      placeholder: "ivantor@gmail.com",
-      value: "",
-    },
-    Phone: {
-      type: "tel",
-      required: false,
-      placeholder: "135-792-4680",
-      value: "",
-    },
-  });
+  const [general, setGeneral] = useState(formFields.General);
+  const [education, setEducation] = useState(formFields.Education);
 
   return (
     <>
       <h1>CV Builder</h1>
       <Section
         title="General"
-        data={generalData}
-        handleChange={setGeneralData}
+        data={general}
+        handleChange={setGeneral}
       ></Section>
-      <div>{JSON.stringify(generalData)}</div>
+      <Section
+        title="Education"
+        data={education}
+        handleChange={setEducation}
+      ></Section>
     </>
   );
 }
