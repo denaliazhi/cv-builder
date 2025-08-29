@@ -6,6 +6,7 @@ import { Section, Preview } from "./components.jsx";
 function App() {
   const [general, setGeneral] = useState(formFields.General);
   const [education, setEducation] = useState(formFields.Education);
+  const [work, setWork] = useState(formFields.Work);
 
   return (
     <>
@@ -14,15 +15,23 @@ function App() {
         <Section
           title="General"
           data={general}
-          handleChange={setGeneral}
+          setData={setGeneral}
+          multiple={false}
         ></Section>
         <Section
           title="Education"
           data={education}
-          handleChange={setEducation}
+          setData={setEducation}
+          multiple={false}
+        ></Section>
+        <Section
+          title="Work"
+          data={work}
+          setData={setWork}
+          multiple={true}
         ></Section>
       </div>
-      <Preview data={[general, education]}></Preview>
+      <Preview data={[general, education, work]}></Preview>
     </>
   );
 }

@@ -34,7 +34,37 @@ export const formFields = {
     },
     Start: {
       type: "date",
+      required: true,
+      value: "",
+    },
+    End: {
+      type: "date",
       required: false,
+      value: "",
+    },
+  },
+  Work: {
+    Company: {
+      type: "text",
+      required: true,
+      placeholder: "Notion",
+      value: "",
+    },
+    Title: {
+      type: "text",
+      required: true,
+      placeholder: "Software Engineer",
+      value: "",
+    },
+    Details: {
+      type: "textarea",
+      required: false,
+      placeholder: "Boosted revenue 30% using rocket fuel",
+      value: "",
+    },
+    Start: {
+      type: "date",
+      required: true,
       value: "",
     },
     End: {

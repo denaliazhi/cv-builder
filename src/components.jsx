@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-export function Section({ title, data, handleChange }) {
+export function Section({ title, data, setData, multiple }) {
   const [editMode, setEditMode] = useState(false);
-  const handleClick = () => {
+  const toggleEdit = () => {
     setEditMode(editMode ? false : true);
   };
+  const addAnother = () => {};
 
   return (
     <form key={title} id={title}>
@@ -20,7 +21,7 @@ export function Section({ title, data, handleChange }) {
                 onChange={(e) => {
                   const id = e.target.id;
                   const input = e.target.value;
-                  handleChange({
+                  setData({
                     ...data,
                     [id]: { ...data[id], value: input },
                   });
@@ -33,14 +34,21 @@ export function Section({ title, data, handleChange }) {
           </div>
         );
       })}
-      <button type="button" form={title} onClick={handleClick}>
+      {editMode ? (
+        multiple ? (
+          <button type="button" onClick={addAnother}>
+            + Add another
+          </button>
+        ) : null
+      ) : null}
+      <button type="button" form={title} onClick={toggleEdit}>
         {editMode ? "Save" : "Edit"}
       </button>
     </form>
   );
 }
 
-export function Preview({ data: [general, education] }) {
+export function Preview({ data: [general, education, work] }) {
   const degreeStart = new Date(education.Start.value).toLocaleString(
     "default",
     {
