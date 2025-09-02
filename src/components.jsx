@@ -1,5 +1,44 @@
 import { useState } from "react";
 
+function Entry({ title, instance, setData, multiple }) {
+    <form key={title} id={title}>
+      {Object.entries(instance).map(([field, attributes]) => {
+        return (
+          <div>
+            <label>{field}</label>
+            {editMode ? (
+              <input
+                id={field}
+                name={field}
+                onChange={(e) => {
+                  const id = e.target.id;
+                  const input = e.target.value;
+                //   setData({
+                //     ...data,
+                //     [id]: { ...data[id], value: input },
+                //   });
+                }}
+                {...attributes}
+              />
+            ) : (
+              <p>{attributes.value}</p>
+            )}
+          </div>
+        );
+      })}
+      {editMode ? (
+        multiple ? (
+          <button type="button" onClick={addAnother}>
+            + Add another
+          </button>
+        ) : null
+      ) : null}
+      <button type="button" form={title} onClick={toggleEdit}>
+        {editMode ? "Save" : "Edit"}
+      </button>
+    </form>
+}
+
 export function Section({ title, data, setData, multiple }) {
   const [editMode, setEditMode] = useState(false);
   const toggleEdit = () => {
@@ -8,8 +47,13 @@ export function Section({ title, data, setData, multiple }) {
   const addAnother = () => {};
 
   return (
+    <>
+    <h2>{title}</h2>
+    {data.map((instance) => (
+        <Entry instance={instance}
+        ></Entry>
+    )}
     <form key={title} id={title}>
-      <h2>{title}</h2>
       {Object.entries(data).map(([field, attributes]) => {
         return (
           <div>
@@ -45,6 +89,7 @@ export function Section({ title, data, setData, multiple }) {
         {editMode ? "Save" : "Edit"}
       </button>
     </form>
+    </>
   );
 }
 
