@@ -45,7 +45,44 @@ function FormGroup({ template, data, setData, allowMultiple, isEditing }) {
   );
 }
 
-function Form({ props }) {
+function Form({ instance, data, setData, isEditing, isRemovable }) {
   // TO DO: add func to update state of form values when user input
-  return <></>;
+  console.log(instance);
+  console.log(Object.entries(instance));
+  function removeForm() {
+    // TO DO: add logic to remove form
+    return;
+  }
+  return (
+    <form>
+      {isEditing && isRemovable && (
+        <button className="remove-btn" onClick={removeForm}>
+          Remove
+        </button>
+      )}
+      {Object.entries(instance).map(([field, attribute]) => (
+        <div>
+          <label>{attribute.displayName}</label>
+          {isEditing ? (
+            <input
+              id={field}
+              name={field}
+              onChange={(e) => {
+                const id = e.target.id;
+                const input = e.target.value;
+                // TO DO: change this to update form corresponding to index in array
+                //   setData({
+                //     ...data,
+                //     [id]: { ...data[id], value: input },
+                //   });
+              }}
+              {...attribute}
+            />
+          ) : (
+            <p>{attribute.value}</p>
+          )}
+        </div>
+      ))}
+    </form>
+  );
 }

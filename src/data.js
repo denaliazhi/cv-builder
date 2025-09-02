@@ -89,7 +89,7 @@ export const templates = {
         value: "",
       },
       end: {
-        name: "End Date",
+        displayName: "End Date",
         type: "date",
         required: false,
         value: "",
