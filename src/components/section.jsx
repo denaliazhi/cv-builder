@@ -19,12 +19,14 @@ export function Section({ title, ...formFeatures }) {
 
 function FormGroup({ template, data, setData, allowMultiple, isEditing }) {
   function addForm() {
-    setData([...data, template]);
-    console.log("added a form");
+    const clone = structuredClone(template);
+    clone.id = crypto.randomUUID();
+    setData([...data, clone]);
   }
   return (
     <div className="form-group">
-      {/* Render each form that belongs to section */}
+      {/* Render each form that belongs to section
+          Create a form if none exist yet for that section */}
       {data.length === 0
         ? addForm()
         : data.map((form) => (
@@ -46,43 +48,56 @@ function FormGroup({ template, data, setData, allowMultiple, isEditing }) {
 }
 
 function Form({ instance, data, setData, isEditing, isRemovable }) {
-  // TO DO: add func to update state of form values when user input
-  console.log(instance);
-  console.log(Object.entries(instance));
-  function removeForm() {
-    // TO DO: add logic to remove form
-    return;
+  function removeForm(id) {
+    setData(data.filter((form) => form.id !== id));
   }
   return (
-    <form>
+    <form id={instance.id}>
       {isEditing && isRemovable && (
-        <button className="remove-btn" onClick={removeForm}>
+        <button
+          type="button"
+          className="remove-btn"
+          onClick={() => removeForm(instance.id)}
+        >
           Remove
         </button>
       )}
-      {Object.entries(instance).map(([field, attribute]) => (
-        <div>
-          <label>{attribute.displayName}</label>
-          {isEditing ? (
-            <input
-              id={field}
-              name={field}
-              onChange={(e) => {
-                const id = e.target.id;
-                const input = e.target.value;
-                // TO DO: change this to update form corresponding to index in array
-                //   setData({
-                //     ...data,
-                //     [id]: { ...data[id], value: input },
-                //   });
-              }}
-              {...attribute}
-            />
-          ) : (
-            <p>{attribute.value}</p>
-          )}
-        </div>
-      ))}
+      {Object.entries(instance).map(
+        // TO DO: when using map, need to add key to each item
+        ([field, attribute]) =>
+          field !== "id" && (
+            <div>
+              <label>{attribute.displayName}</label>
+              {isEditing ? (
+                <input
+                  name={field}
+                  onChange={(e) => {
+                    const id = e.target.parentElement.parentElement.id;
+                    const input = e.target.value;
+                    setData(
+                      data.map((form) => {
+                        if (form.id === id) {
+                          return {
+                            ...form,
+                            [field]: {
+                              ...form[field],
+                              value: input,
+                            },
+                          };
+                        } else {
+                          return form;
+                        }
+                      })
+                    );
+                  }}
+                  {...attribute}
+                />
+              ) : (
+                <p>{attribute.value}</p>
+              )}
+            </div>
+          )
+      )}
     </form>
   );
 }
