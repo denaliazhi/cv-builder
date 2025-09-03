@@ -6,7 +6,6 @@ export function Entry({ title, subtitle, dates, children }) {
         <p>{subtitle}</p>
       </div>
       <p>
-        {/* TO DO: only shows short month, missing year */}
         {dates[0]
           ? `${formatDate(dates[0])} - ${
               dates[1] ? formatDate(dates[1]) : "Present"
@@ -19,7 +18,6 @@ export function Entry({ title, subtitle, dates, children }) {
 }
 
 function formatDate(date) {
-  return new Date(date).toLocaleString("default", {
-    month: "short",
-  });
+  const options = { month: "short", year: "numeric" };
+  return new Date(date).toLocaleString("default", options);
 }
