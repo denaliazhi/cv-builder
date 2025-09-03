@@ -12,7 +12,7 @@ export function Entry({ title, subtitle, dates, children }) {
             }`
           : ""}
       </p>
-      {children}
+      <p>{children}</p>
     </div>
   );
 }

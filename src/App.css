@@ -5,7 +5,6 @@
 }
 
 #root {
-  max-width: 1280px;
   margin: 2rem auto;
   text-align: center;
 }
@@ -19,6 +18,16 @@ main {
   display: flex;
   gap: 1rem;
 }
+
+button {
+  border-radius: 0.2rem;
+  padding: 0.1rem 0.2rem;
+  font-size: 0.7rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/*  --- Styling for the CV editor -- */
 
 .editor {
   display: flex;
@@ -49,9 +58,7 @@ section button:hover,
 section button:active {
   outline: none;
   border: none;
-  padding: 0.1rem 0.2rem;
   background: none;
-  font-size: 0.7rem;
   display: flex;
   align-items: center;
   gap: 3px;
@@ -60,7 +67,6 @@ section button:active {
 section button:focus {
   outline: 1px solid #d3d3d3;
   border: none;
-  border-radius: 0.2rem;
 }
 
 section button span {
@@ -100,6 +106,69 @@ form input {
   margin: 0.5rem 0;
 }
 
+.remove-btn:hover {
+  background-color: rgb(194, 35, 35);
+}
+
 .add-btn {
   margin: 0.5rem 0;
+}
+
+/*  --- Styling for the CV viewer -- */
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem 0.01rem #47474745;
+}
+
+.cv-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1rem;
+}
+
+.cv-header h2 {
+  grid-column: span 2;
+  font-size: 1.7rem;
+}
+.cv-header p {
+  font-size: 0.85rem;
+}
+
+.cv-header p:first-of-type {
+  justify-self: right;
+}
+
+.cv-header p:last-of-type {
+  justify-self: left;
+}
+
+.cv-section {
+  text-align: left;
+}
+
+.cv-section h3 {
+  font-size: 1rem;
+  color: #3962bd;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin: 0.7rem 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.cv-entry > p:first-of-type {
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.cv-entry > p:last-of-type {
+  grid-column: span 2;
+  font-size: 0.75rem;
 }
