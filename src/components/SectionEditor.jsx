@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FormGroup } from "./FormGroup";
+import save from "../assets/icons8-save.png";
+import edit from "../assets/icons8-edit.png";
 
 export function SectionEditor({ title, ...formFeatures }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -9,10 +11,19 @@ export function SectionEditor({ title, ...formFeatures }) {
   }
   return (
     <section>
-      <h2>{title}</h2>
-      <button className="edit-btn" onClick={toggleEdit}>
-        {isEditing ? "Save" : "Edit"}
-      </button>
+      <div>
+        <h2>{title}</h2>
+        <button className="edit-btn" onClick={toggleEdit}>
+          <span
+            style={
+              isEditing
+                ? { backgroundImage: `url(${save})` }
+                : { backgroundImage: `url(${edit})` }
+            }
+          ></span>
+          {isEditing ? "Save" : "Edit"}
+        </button>
+      </div>
       <FormGroup {...formFeatures} isEditing={isEditing} />
     </section>
   );

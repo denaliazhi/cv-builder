@@ -24,18 +24,18 @@ function App() {
             allowMultiple={templates.basic.allowMultiple}
           />
           <SectionEditor
-            title={templates.education.displayName}
-            template={templates.education.form}
-            data={education}
-            setData={setEducation}
-            allowMultiple={templates.education.allowMultiple}
-          />
-          <SectionEditor
             title={templates.work.displayName}
             template={templates.work.form}
             data={work}
             setData={setWork}
             allowMultiple={templates.work.allowMultiple}
+          />
+          <SectionEditor
+            title={templates.education.displayName}
+            template={templates.education.form}
+            data={education}
+            setData={setEducation}
+            allowMultiple={templates.education.allowMultiple}
           />
         </div>
         <div className="viewer">

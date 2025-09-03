@@ -1,10 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 2rem auto;
   text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 2rem 0;
 }
 
 main {
   display: flex;
+  gap: 1rem;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+section {
+  border: 1px black solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+section > div:first-child {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: last baseline;
+}
+
+section h2 {
+  font-size: 1.2rem;
+}
+
+section button,
+section button:hover,
+section button:active {
+  outline: none;
+  border: none;
+  padding: 0.1rem 0.2rem;
+  background: none;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+section button:focus {
+  outline: 1px solid #d3d3d3;
+  border: none;
+  border-radius: 0.2rem;
+}
+
+section button span {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  background-size: contain;
+}
+
+hr {
+  margin: 0.5rem 0;
+  border-top: 1px solid #d3d3d3;
+}
+
+form label {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+form input {
+  border: none;
+  display: block;
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+  width: 100%;
+}
+
+form p,
+form input {
+  font-size: 0.7rem;
+}
+
+.remove-btn {
+  background-color: rgb(207, 89, 89);
+  color: white;
+  margin: 0.5rem 0;
+}
+
+.add-btn {
+  margin: 0.5rem 0;
 }

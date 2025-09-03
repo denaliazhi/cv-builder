@@ -1,6 +1,6 @@
 export const templates = {
   basic: {
-    displayName: "Basic Information",
+    displayName: "The Basics",
     form: {
       name: {
         displayName: "Name",
