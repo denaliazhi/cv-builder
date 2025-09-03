@@ -1,4 +1,4 @@
-import { Form } from "./form";
+import { Form } from "./Form";
 
 export function FormGroup({
   template,

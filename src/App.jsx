@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import { templates } from "./data.js";
-import { Section } from "./components/section.jsx";
-import { Viewer } from "./components/viewer.jsx";
+import { SectionEditor } from "./components/SectionEditor.jsx";
+import { SectionPreview } from "./components/SectionPreview.jsx";
+import { Header } from "./components/Header.jsx";
+import { Entry } from "./components/Entry.jsx";
 
 function App() {
   const [basic, setBasic] = useState([]);
@@ -14,21 +16,21 @@ function App() {
       <h1>CV Builder</h1>
       <main>
         <div className="editor">
-          <Section
+          <SectionEditor
             title={templates.basic.displayName}
             template={templates.basic.form}
             data={basic}
             setData={setBasic}
             allowMultiple={templates.basic.allowMultiple}
           />
-          <Section
+          <SectionEditor
             title={templates.education.displayName}
             template={templates.education.form}
             data={education}
             setData={setEducation}
             allowMultiple={templates.education.allowMultiple}
           />
-          <Section
+          <SectionEditor
             title={templates.work.displayName}
             template={templates.work.form}
             data={work}
@@ -36,10 +38,29 @@ function App() {
             allowMultiple={templates.work.allowMultiple}
           />
         </div>
-        <Viewer
-          titles={[templates.work.displayName, templates.education.displayName]}
-          data={[basic, work, education]}
-        />
+        <div className="viewer">
+          <Header content={basic} />
+          <SectionPreview title={templates.work.displayName}>
+            {work.map((form) => (
+              <Entry
+                title={form.title.value}
+                subtitle={form.company.value}
+                dates={[form.start.value, form.end.value]}
+              >
+                {form.details.value}
+              </Entry>
+            ))}
+          </SectionPreview>
+          <SectionPreview title={templates.education.displayName}>
+            {education.map((form) => (
+              <Entry
+                title={form.degree.value}
+                subtitle={form.school.value}
+                dates={[form.start.value, form.end.value]}
+              ></Entry>
+            ))}
+          </SectionPreview>
+        </div>
       </main>
     </>
   );

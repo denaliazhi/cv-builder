@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FormGroup } from "./formgroup";
+import { FormGroup } from "./FormGroup";
 
-export function Section({ title, ...formFeatures }) {
+export function SectionEditor({ title, ...formFeatures }) {
   const [isEditing, setIsEditing] = useState(false);
   function toggleEdit() {
     // TO DO: Add logic to validate required fields before changing state
