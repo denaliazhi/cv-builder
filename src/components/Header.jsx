@@ -1,16 +1,12 @@
 export function Header({ content }) {
   const obj = content[0];
-
-  console.log(obj);
   return (
     <div className="cv-header">
-      {Object.entries(obj).map(([field, attribute]) => {
-        if (field === "name") {
-          return <h2>{attribute.value}</h2>;
-        } else if (field !== "id") {
-          return <p>{attribute.value}</p>;
-        }
-      })}
+      <h2>{obj.name.value}</h2>
+      <div>
+        <p>{obj.email.value}</p>
+        <p>{obj.phone.value}</p>
+      </div>
     </div>
   );
 }

@@ -7,6 +7,7 @@
 #root {
   margin: 2rem auto;
   text-align: center;
+  max-width: 50rem;
 }
 
 h1 {
@@ -15,7 +16,8 @@ h1 {
 }
 
 main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   gap: 1rem;
 }
 
@@ -86,6 +88,11 @@ form label {
   font-weight: bold;
 }
 
+.asterisk {
+  font-weight: normal;
+  color: rgb(207, 89, 89);
+}
+
 form input {
   border: none;
   display: block;
@@ -125,26 +132,15 @@ form input {
   box-shadow: 0 0 0.5rem 0.01rem #47474745;
 }
 
-.cv-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 1rem;
-}
-
 .cv-header h2 {
-  grid-column: span 2;
+  width: 100%;
   font-size: 1.7rem;
 }
-.cv-header p {
+.cv-header div {
+  display: flex;
+  gap: 1rem;
   font-size: 0.85rem;
-}
-
-.cv-header p:first-of-type {
-  justify-self: right;
-}
-
-.cv-header p:last-of-type {
-  justify-self: left;
+  justify-content: center;
 }
 
 .cv-section {
