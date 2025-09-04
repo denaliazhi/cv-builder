@@ -3,9 +3,12 @@ import { FormGroup } from "./FormGroup";
 import save from "../assets/icons8-save.png";
 import edit from "../assets/icons8-edit.png";
 
-export function SectionEditor({ title, ...formFeatures }) {
+export function SectionEditor({ title, setExample, ...formFeatures }) {
   const [isEditing, setIsEditing] = useState(false);
   function toggleEdit() {
+    if (isEditing) {
+      setExample(false);
+    }
     // TO DO: Add logic to validate required fields before changing state
     setIsEditing(isEditing ? false : true);
   }

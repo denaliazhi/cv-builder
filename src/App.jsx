@@ -29,6 +29,7 @@ function App() {
             data={basic}
             setData={setBasic}
             allowMultiple={templates.basic.allowMultiple}
+            setExample={setShowExample}
           />
           <SectionEditor
             title={templates.work.displayName}
@@ -36,6 +37,7 @@ function App() {
             data={work}
             setData={setWork}
             allowMultiple={templates.work.allowMultiple}
+            setExample={setShowExample}
           />
           <SectionEditor
             title={templates.education.displayName}
@@ -43,6 +45,7 @@ function App() {
             data={education}
             setData={setEducation}
             allowMultiple={templates.education.allowMultiple}
+            setExample={setShowExample}
           />
         </div>
         <div className="viewer">
