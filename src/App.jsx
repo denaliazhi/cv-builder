@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { templates } from "./data.js";
+import { templates } from "./template.js";
 import { SectionEditor } from "./components/SectionEditor.jsx";
 import { SectionPreview } from "./components/SectionPreview.jsx";
 import { Header } from "./components/Header.jsx";
@@ -11,9 +11,16 @@ function App() {
   const [education, setEducation] = useState([]);
   const [work, setWork] = useState([]);
 
+  const [showExample, setShowExample] = useState(true);
+
   return (
     <>
       <h1>CV Builder</h1>
+      <div className="toolbar">
+        <button onClick={() => setShowExample(showExample ? false : true)}>
+          {showExample ? "Hide example" : "Show example"}
+        </button>
+      </div>
       <main>
         <div className="editor">
           <SectionEditor
@@ -39,26 +46,44 @@ function App() {
           />
         </div>
         <div className="viewer">
-          <Header content={basic} />
+          <Header content={basic} showExample={showExample} />
           <SectionPreview title={templates.work.displayName}>
-            {work.map((form) => (
+            {showExample ? (
               <Entry
-                title={form.title.value}
-                subtitle={form.company.value}
-                dates={[form.start.value, form.end.value]}
+                title={templates.work.form.title.placeholder}
+                subtitle={templates.work.form.company.placeholder}
+                dates={["08/02/2023", "10/03/2024"]}
               >
-                {form.details.value}
+                {templates.work.form.details.placeholder}
               </Entry>
-            ))}
+            ) : (
+              work.map((form) => (
+                <Entry
+                  title={form.title.value}
+                  subtitle={form.company.value}
+                  dates={[form.start.value, form.end.value]}
+                >
+                  {form.details.value}
+                </Entry>
+              ))
+            )}
           </SectionPreview>
           <SectionPreview title={templates.education.displayName}>
-            {education.map((form) => (
+            {showExample ? (
               <Entry
-                title={form.degree.value}
-                subtitle={form.school.value}
-                dates={[form.start.value, form.end.value]}
+                title={templates.education.form.degree.placeholder}
+                subtitle={templates.education.form.school.placeholder}
+                dates={["09/02/2019", "05/03/2023"]}
               ></Entry>
-            ))}
+            ) : (
+              education.map((form) => (
+                <Entry
+                  title={form.degree.value}
+                  subtitle={form.school.value}
+                  dates={[form.start.value, form.end.value]}
+                ></Entry>
+              ))
+            )}
           </SectionPreview>
         </div>
       </main>

@@ -1,13 +1,13 @@
-export function Header({ content }) {
+export function Header({ content, showExample }) {
   const obj = content[0];
   return (
     <div className="cv-header">
       {obj && (
         <>
-          <h2>{obj.name.value}</h2>
+          <h2>{showExample ? obj.name.placeholder : obj.name.value}</h2>
           <div>
-            <p>{obj.email.value}</p>
-            <p>{obj.phone.value}</p>
+            <p>{showExample ? obj.email.placeholder : obj.email.value}</p>
+            <p>{showExample ? obj.phone.placeholder : obj.phone.value}</p>
           </div>
         </>
       )}

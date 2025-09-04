@@ -40,7 +40,7 @@ export const templates = {
         displayName: "Degree",
         type: "text",
         required: true,
-        placeholder: "Bachelor of Science, Business",
+        placeholder: "Bachelor of Science, Computer Science",
         value: "",
       },
       start: {
@@ -79,7 +79,8 @@ export const templates = {
         displayName: "Details",
         type: "textarea",
         required: false,
-        placeholder: "Boosted revenue 30% using rocket fuel",
+        placeholder:
+          "Boosted revenue 30% using rocket fuel, Squashed 894 bugs in 2 months, Reduced average time to make coffee by 10%",
         value: "",
       },
       start: {

@@ -12,7 +12,7 @@
 
 h1 {
   font-size: 2rem;
-  margin: 2rem 0;
+  margin: 2rem 0 0.5rem;
 }
 
 main {
@@ -29,6 +29,20 @@ button {
   cursor: pointer;
 }
 
+.toolbar {
+  text-align: right;
+}
+
+.toolbar button {
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+.toolbar button:hover {
+  background-color: #d3d3d3;
+}
+
 /*  --- Styling for the CV editor -- */
 
 .editor {
@@ -38,10 +52,14 @@ button {
 }
 
 section {
-  border: 1px black solid;
+  border: 1px solid #d3d3d3;
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: left;
+}
+
+section:hover {
+  border: 1px solid black;
 }
 
 section > div:first-child {
@@ -66,7 +84,9 @@ section button:active {
   gap: 3px;
 }
 
-section button:focus {
+.toolbar button:focus,
+section button:focus,
+.add-btn:focus {
   outline: 1px solid #d3d3d3;
   border: none;
 }
@@ -164,7 +184,16 @@ form input {
   font-size: 0.75rem;
 }
 
-.cv-entry > p:last-of-type {
+.cv-entry ul {
+  list-style-type: none;
   grid-column: span 2;
+}
+
+.cv-entry li {
   font-size: 0.75rem;
+}
+
+.cv-entry li::before {
+  content: "|";
+  margin-right: 0.4rem;
 }

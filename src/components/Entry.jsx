@@ -12,7 +12,9 @@ export function Entry({ title, subtitle, dates, children }) {
             }`
           : ""}
       </p>
-      <p>{children}</p>
+      <ul>
+        {children && children.split(",").map((line) => <li>{line.trim()}</li>)}
+      </ul>
     </div>
   );
 }
